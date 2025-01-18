@@ -9,7 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -19,17 +19,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Full name is required")
     private String fullName;
 
-    @Email(message = "Email should be valid")
-    @NotBlank(message = "Email is required")
+
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "Password is required")
+
     private String password;
 
     private String role = "USER";
 
+    public User(String fullName, String email, String password, String role) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }
